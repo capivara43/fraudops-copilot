@@ -1,4 +1,9 @@
 """FraudOps Copilot API - FastAPI backend."""
+from dotenv import load_dotenv
+
+# Load .env file before other imports (so llm_client.py can read GEMINI_API_KEY)
+load_dotenv()
+
 import uuid
 from typing import Optional
 

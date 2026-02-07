@@ -3,6 +3,10 @@ import json
 import os
 from typing import Any, Optional
 
+# Load .env file to read GEMINI_API_KEY
+from dotenv import load_dotenv
+load_dotenv()
+
 # Optional: use google-generativeai if available
 try:
     import google.generativeai as genai
@@ -21,7 +25,6 @@ from models import (
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
-
 
 def _get_model():
     if not GEMINI_AVAILABLE or not GEMINI_API_KEY:
@@ -43,6 +46,7 @@ def adjudicate_decision(
     """
     model = _get_model()
     if not model:
+        print("yes")
         return None
 
     # Build prompt with hard rules
